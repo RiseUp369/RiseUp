@@ -1,0 +1,16 @@
+{
+  "name": "ai-setup-trifecta",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Blocks any declared AI-assistant setup that combines private data, untrusted content and external comms (the lethal trifecta). Zero dependencies, synthetic data only.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --no-warnings --test test/trifecta.test.ts",
+    "check": "node --experimental-strip-types --no-warnings src/cli.ts check"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

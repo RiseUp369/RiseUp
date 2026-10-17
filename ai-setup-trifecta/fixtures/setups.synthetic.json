@@ -1,0 +1,45 @@
+{
+  "synthetic": true,
+  "note": "Synthetic data only. No real people, accounts, inboxes or addresses.",
+  "setups": [
+    {
+      "id": "synth-inbox-assistant",
+      "label": "Synthetic inbox assistant",
+      "tools": [
+        { "id": "synth-mail-reader", "label": "Synthetic mailbox reader", "legs": ["private_data", "untrusted_content"] },
+        { "id": "synth-calendar-reader", "label": "Synthetic calendar reader", "legs": ["private_data"] },
+        { "id": "synth-web-fetch", "label": "Synthetic web page fetcher", "legs": ["untrusted_content"] },
+        { "id": "synth-mail-sender", "label": "Synthetic mail sender", "legs": ["external_comms"] }
+      ]
+    },
+    {
+      "id": "synth-guarded-research-agent",
+      "label": "Synthetic research agent with a 95% guardrail",
+      "tools": [
+        { "id": "synth-doc-search", "label": "Synthetic private document search", "legs": ["private_data"] },
+        { "id": "synth-web-browser", "label": "Synthetic web browser", "legs": ["untrusted_content", "external_comms"] },
+        { "id": "synth-chat-poster", "label": "Synthetic chat poster", "legs": ["external_comms"] }
+      ],
+      "mitigations": [
+        { "kind": "guardrail", "label": "Synthetic prompt-injection classifier", "claimed_block_rate": 0.95 },
+        { "kind": "filter", "label": "Synthetic outbound URL filter" }
+      ]
+    },
+    {
+      "id": "synth-notes-summariser",
+      "label": "Synthetic notes summariser",
+      "tools": [
+        { "id": "synth-notes-reader", "label": "Synthetic notes reader", "legs": ["private_data"] },
+        { "id": "synth-summary-writer", "label": "Synthetic local summary writer", "legs": [] }
+      ]
+    },
+    {
+      "id": "synth-web-researcher",
+      "label": "Synthetic web researcher with no private data",
+      "tools": [
+        { "id": "synth-public-search", "label": "Synthetic public web search", "legs": ["untrusted_content"] },
+        { "id": "synth-webhook-post", "label": "Synthetic webhook poster", "legs": ["external_comms"] }
+      ]
+    }
+  ]
+}
