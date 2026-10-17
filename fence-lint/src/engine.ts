@@ -177,8 +177,35 @@ function negatedBefore(prefix: string, window: number): boolean {
   return tail.some((w, i) => NEGATORS.has(w) && !NOT_NEGATING_NEXT.has(tail[i + 1] ?? ''));
 }
 
+// JS `\b` and `\B` only treat ASCII [A-Za-z0-9_] as word characters, even with the `u` flag,
+// so a roster name such as "José" or "Élodie" would never match `\b(?:{ROSTER})\b`.
+const WORD = '[\\p{L}\\p{M}\\p{N}_]';
+const UNICODE_B = `(?:(?<=${WORD})(?!${WORD})|(?<!${WORD})(?=${WORD}))`;
+const UNICODE_NOT_B = `(?:(?<=${WORD})(?=${WORD})|(?<!${WORD})(?!${WORD}))`;
+
+/** Rewrites `\b`/`\B` outside character classes into Unicode-aware lookarounds. */
+export function unicodeWordBoundaries(src: string): string {
+  let out = '';
+  let inClass = false;
+  for (let i = 0; i < src.length; i++) {
+    const c = src[i];
+    if (c === '\\') {
+      const next = src[i + 1] ?? '';
+      if (!inClass && next === 'b') out += UNICODE_B;
+      else if (!inClass && next === 'B') out += UNICODE_NOT_B;
+      else out += c + next;
+      i++;
+      continue;
+    }
+    if (c === '[' && !inClass) inClass = true;
+    else if (c === ']' && inClass) inClass = false;
+    out += c;
+  }
+  return out;
+}
+
 function compile(src: string, flags = ''): RegExp {
-  return new RegExp(src, [...new Set((flags + 'gu').split(''))].join(''));
+  return new RegExp(unicodeWordBoundaries(src), [...new Set((flags + 'gu').split(''))].join(''));
 }
 
 export interface LintOptions {
@@ -221,16 +248,16 @@ export function lintText(text: string, opts: LintOptions): LintResult {
   for (const rule of active) {
     let segs = rule.scope === 'line' ? lines : sentences;
     if (rule.linePrefix) {
-      const pre = new RegExp(rule.linePrefix, 'u');
+      const pre = new RegExp(unicodeWordBoundaries(rule.linePrefix), 'u');
       segs = segs.filter((s) => pre.test(s.text));
     }
-    const unless = (rule.unless ?? []).map((u) => new RegExp(u, 'iu'));
+    const unless = (rule.unless ?? []).map((u) => new RegExp(unicodeWordBoundaries(u), 'iu'));
     const patterns = rule.patterns
       .map((p) => ({ p, src: expandTokens(p.regex, ctx) }))
       .filter((x): x is { p: (typeof rule.patterns)[number]; src: string } => x.src !== null)
       .map(({ p, src }) => ({ p, re: compile(src, p.flags) }));
     const co = rule.cooccurrence
-      ? { anchor: compile(rule.cooccurrence.anchor, rule.cooccurrence.flags), with: rule.cooccurrence.with.map((w) => new RegExp(w, (rule.cooccurrence!.flags ?? '') + 'u')) }
+      ? { anchor: compile(rule.cooccurrence.anchor, rule.cooccurrence.flags), with: rule.cooccurrence.with.map((w) => new RegExp(unicodeWordBoundaries(w), (rule.cooccurrence!.flags ?? '') + 'u')) }
       : null;
 
     for (const seg of segs) {
