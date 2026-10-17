@@ -1,0 +1,6 @@
+# Real plans and steward sheets carry people data: keep them local.
+*.local.json
+*.local.md
+*.local.csv
+private/
+node_modules/

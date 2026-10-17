@@ -1,0 +1,51 @@
+{
+  "$schema": "../absence-plan.schema.json",
+  "planVersion": "0.1",
+  "doctrineStatus": "v0.1-unratified",
+  "planId": "synthetic-ready",
+  "absence": {
+    "probe": "Probe 3",
+    "departureDate": "2026-11-02",
+    "returnDate": "2027-02-26",
+    "founderRole": "Founder",
+    "primaryHolder": "Holder A",
+    "primaryBackup": "Holder B"
+  },
+  "roles": [
+    { "label": "Founder", "kind": "founder" },
+    { "label": "Holder A", "kind": "co-driver" },
+    { "label": "Holder B", "kind": "holder" },
+    { "label": "Holder C", "kind": "holder" },
+    { "label": "Welcomer D", "kind": "welcomer" }
+  ],
+  "thresholds": { "maxScopePerHolder": 3 },
+  "responseWindow": { "cadence": "weekly", "day": "saturday" },
+  "emergencyInterrupts": [
+    { "class": "harm_to_person", "firstResponder": "Holder A" },
+    { "class": "reputational_damage", "firstResponder": "Holder B" },
+    { "class": "money_legal", "firstResponder": "Holder C" }
+  ],
+  "scope": [
+    { "id": "peer-session", "title": "Run the peer session", "holder": "Holder A", "backup": "Holder B", "runsWithoutFounder": true },
+    { "id": "intake-day-0", "title": "Day-0 conversation for new entrants", "holder": "Welcomer D", "backup": "Holder C", "runsWithoutFounder": true },
+    { "id": "async-pulse", "title": "Send the async pulse", "holder": "Holder B", "backup": "Holder C", "runsWithoutFounder": true },
+    { "id": "venue-booking", "title": "Book the venue", "holder": "Holder C", "backup": "Holder A", "runsWithoutFounder": true },
+    { "id": "feedback-board", "title": "Approve pending feedback posts", "holder": "Holder B", "backup": "Holder A", "runsWithoutFounder": true },
+    { "id": "going-cold-list", "title": "Review the going-cold list", "holder": "Holder A", "backup": "Welcomer D", "runsWithoutFounder": true }
+  ],
+  "heartbeat": {
+    "peerSession": { "cadence": "biweekly", "rotatingHost": true, "holder": "Holder A" },
+    "asyncPulse": { "cadence": "monthly", "holder": "Holder B" },
+    "warmthLoop": { "messagesPlanned": 4, "holder": "Holder C" }
+  },
+  "runwayGate": {
+    "coastPageWritten": true,
+    "handoffRitualDone": true,
+    "zeroOpsWeek": { "start": "2026-10-05", "end": "2026-10-11", "founderInterventions": 0 }
+  },
+  "formation": { "ownersBesidesFounder": 1, "coDriverVacuumLevel3Passed": true },
+  "reunion": { "date": "2027-03-06", "announced": true },
+  "rehearsals": [
+    { "date": "2026-09-21", "kind": "live-step-back", "durationDays": 7, "holderActedWithoutFounder": true, "notes": "Synthetic: peer session ran with a rotating host; one escalation redirected to Holder A." }
+  ]
+}
