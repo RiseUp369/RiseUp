@@ -33,6 +33,17 @@ describe('event contract parser', () => {
     expect(() => parseEvent({ v: 1, type: 'intake.day0', at: '2026-10-01', subject: 'Holder X' })).toThrow(/opaque id/);
   });
 
+  it('rejects inherited Object.prototype key names as unknown fields', () => {
+    for (const key of ['constructor', 'toString', 'valueOf', 'hasOwnProperty']) {
+      expect(() => parseEvent({ v: 1, type: 'intake.day0', at: '2026-10-01', subject: 'p_7f3a', [key]: 'Someone' })).toThrow(
+        new RegExp(`unknown field "${key}"`),
+      );
+    }
+    expect(() => parseJsonl('{"v":1,"type":"intake.day0","at":"2026-10-01","subject":"p_7f3a","__proto__":"Someone"}')).toThrow(
+      /unknown field "__proto__"/,
+    );
+  });
+
   it('rejects unknown fields so a name cannot hide under another key', () => {
     expect(() => parseEvent({ v: 1, type: 'intake.day0', at: '2026-10-01', subject: 'p_7f3a', volunteer: 'X' })).toThrow(
       /unknown field "volunteer"/,

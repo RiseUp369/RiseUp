@@ -180,8 +180,10 @@ function parseEventAt(raw: unknown, line?: number): FormationEvent {
     checkKind(where, k, kind, obj[k]);
   }
   for (const [k, v] of Object.entries(obj)) {
-    if ((COMMON as readonly string[]).includes(k) || k in spec.required) continue;
-    const kind = spec.optional[k];
+    // Own keys only: `in` and plain indexing would let constructor, toString, __proto__ and
+    // other Object.prototype names slip past the closed contract.
+    if ((COMMON as readonly string[]).includes(k) || Object.hasOwn(spec.required, k)) continue;
+    const kind = Object.hasOwn(spec.optional, k) ? spec.optional[k] : undefined;
     if (!kind) fail(where, `unknown field "${k}" for ${type} (the contract is closed so names cannot hide under other keys)`);
     if (v !== undefined) checkKind(where, k, kind, v);
   }
