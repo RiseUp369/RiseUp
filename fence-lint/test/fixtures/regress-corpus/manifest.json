@@ -1,0 +1,8 @@
+{
+  "_comment": "SYNTHETIC regression corpus: deliberately broken so npm run eval must exit 1.",
+  "roster": "../../../fixtures/roster.synthetic.txt",
+  "samples": [
+    { "file": "bad/missed.md", "profile": "internal", "expect": [{ "rule": "F2", "line": 2 }] },
+    { "file": "good/false-positive.md", "profile": "internal" }
+  ]
+}

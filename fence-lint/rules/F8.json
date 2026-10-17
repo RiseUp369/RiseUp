@@ -1,0 +1,70 @@
+{
+  "id": "F8",
+  "title": "Gatekeeping phrasing in outer-funnel copy",
+  "severity": "warn",
+  "profiles": [
+    "outward"
+  ],
+  "source": "vault/30_Decisions/decision-riseup-two-layer-structure-separates-outer-service-funnel-fr.md",
+  "rationale": "The outer funnel is open, low-bar and warm; only the inner fellowship is closed. Gatekeeping language in outer-funnel copy turns people away before they arrive. Warn-only: a human decides.",
+  "fix": "Say who it is for and what they will do; keep the door open (no experience needed, come as you are).",
+  "scope": "sentence",
+  "negationWindow": 2,
+  "patterns": [
+    {
+      "regex": "\\bonly\\s+the\\s+(?:best|most committed|serious|strongest|chosen|worthy|brightest|top)\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\b(?:must|need to|needs to|have to|has to)\\s+(?:prove|earn|demonstrate)\\s+(?:yourself|themselves|your\\s+(?:place|worth|commitment|seat|spot))\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\bearn\\s+(?:your|a|their)\\s+(?:place|seat|spot)\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\binvit(?:e|ation)[- ]only\\b|\\bby\\s+invitation\\s+only\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\bnot\\s+for\\s+everyone\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\b(?:highly\\s+)?selective\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\bapply\\s+to\\s+be\\s+considered\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\bonly\\s+(?:serious|committed|qualified|experienced)\\s+(?:applicants|people|candidates|volunteers)\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\bif\\s+you(?:'re|’re| are)\\s+not\\s+(?:serious|committed|ready)\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\bdon(?:'|’)?t\\s+(?:bother|apply|come)\\b[^.\\n]{0,20}\\b(?:if|unless)\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    },
+    {
+      "regex": "\\bno\\s+beginners\\b|\\bweed(?:s|ing)?\\s+out\\b",
+      "flags": "i",
+      "message": "Gatekeeping phrase in outer-funnel copy."
+    }
+  ]
+}

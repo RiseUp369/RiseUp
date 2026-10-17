@@ -1,0 +1,20 @@
+{
+  "name": "@riseup/fence-lint",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Doctrine fence linter and evaluation harness for agent output and outward copy. Rules as data, no runtime dependencies, no network.",
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "bin": { "fence-lint": "./src/cli.ts" },
+  "scripts": {
+    "test": "vitest run",
+    "type-check": "tsc --noEmit",
+    "eval": "node src/eval.ts",
+    "lint:file": "node src/cli.ts"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.0",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  }
+}

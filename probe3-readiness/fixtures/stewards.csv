@@ -1,0 +1,5 @@
+rule,owner,backup,runs_without_founder
+Run the peer session,Holder A,Holder B,yes
+"Approve feedback posts, then publish",founder,,no
+Book the venue,,,
+Send the async pulse,Holder B,Holder A,yes

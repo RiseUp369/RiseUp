@@ -1,0 +1,18 @@
+{
+  "name": "@riseup/formation-metrics",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ratified RiseUp formation metrics and gate calculators. Aggregate-only, pure functions, no runtime dependencies.",
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "test": "vitest run",
+    "type-check": "tsc --noEmit",
+    "report": "node src/cli.ts report fixtures/events.synthetic.jsonl --quarter 2026Q4"
+  },
+  "devDependencies": {
+    "@types/node": "22.18.0",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  }
+}

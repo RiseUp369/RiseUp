@@ -1,0 +1,24 @@
+{
+  "_comment": "Driver Engine 0-5 labels as shipped in the cockpit CLI STAGE_LABELS (stage 0 relabelled Dormant). If the owner ratifies a different stage-0 word, change it here; F5 follows this file.",
+  "source": "vault/30_Decisions/decision-conflict-resolution-proposal-the-rival-volunteer-progression.md",
+  "labels": [
+    "Dormant",
+    "Trial",
+    "Contributor",
+    "Owner",
+    "Driver",
+    "Cultivator"
+  ],
+  "rivalLabels": [
+    "Prospect",
+    "Interested",
+    "Apprentice",
+    "Ancestor",
+    "Novice",
+    "Rookie",
+    "Champion",
+    "Ambassador",
+    "Seeker",
+    "Portfolio Lead"
+  ]
+}

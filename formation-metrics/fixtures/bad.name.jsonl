@@ -1,0 +1,2 @@
+# Synthetic negative fixture: must be rejected because it carries a "name" field.
+{"v":1,"type":"intake.day0","at":"2026-10-03","subject":"p_e01","name":"Example Person"}

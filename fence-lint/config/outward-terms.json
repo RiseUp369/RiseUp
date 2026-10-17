@@ -1,0 +1,151 @@
+{
+  "_comment": "F6 term list. Add local terms in a *.local.json file (gitignored) and pass --terms. Plain replacements for the philosophy register come from the source decision.",
+  "source": "vault/30_Decisions/decision-keep-the-depth-drop-the-philosophy-jargon-outward-facing-cop.md",
+  "terms": [
+    {
+      "term": "epistemic architecture",
+      "suggest": "how people really learn",
+      "kind": "philosophy"
+    },
+    {
+      "term": "ontological alignment",
+      "suggest": "connecting big ideas",
+      "kind": "philosophy"
+    },
+    {
+      "term": "aesthetic semiotics",
+      "suggest": "visual grammar",
+      "kind": "philosophy"
+    },
+    {
+      "term": "persuasion ontology",
+      "suggest": "words that move",
+      "kind": "philosophy"
+    },
+    {
+      "term": "attention entropy",
+      "suggest": "winning attention",
+      "kind": "philosophy"
+    },
+    {
+      "term": "memetic dynamics",
+      "suggest": "ideas that spread",
+      "kind": "philosophy"
+    },
+    {
+      "term": "systems consciousness",
+      "suggest": "seeing the whole system",
+      "kind": "philosophy"
+    },
+    {
+      "term": "collective intentionality",
+      "suggest": "forging shared intent",
+      "kind": "philosophy"
+    },
+    {
+      "term": "presence ontology",
+      "suggest": "presence crafting",
+      "kind": "philosophy"
+    },
+    {
+      "term": "liminal facilitation",
+      "suggest": "liminal moments",
+      "kind": "philosophy"
+    },
+    {
+      "term": "semiotic precision",
+      "suggest": "shaping mindsets",
+      "kind": "philosophy"
+    },
+    {
+      "term": "sociotechnical symphony",
+      "suggest": "people and tools working together",
+      "kind": "philosophy"
+    },
+    {
+      "term": "Driver Engine",
+      "suggest": "how we grow volunteers",
+      "kind": "internal"
+    },
+    {
+      "term": "prime directive",
+      "suggest": "our first goal",
+      "kind": "internal"
+    },
+    {
+      "term": "engineered vacuum",
+      "suggest": "room to step up",
+      "kind": "internal"
+    },
+    {
+      "term": "engineered vacuums",
+      "suggest": "room to step up",
+      "kind": "internal"
+    },
+    {
+      "term": "coast mode",
+      "suggest": "a lighter season",
+      "kind": "internal"
+    },
+    {
+      "term": "Contingency Tree",
+      "suggest": "our backup plan",
+      "kind": "internal"
+    },
+    {
+      "term": "Capability OS",
+      "suggest": "our tools",
+      "kind": "internal"
+    },
+    {
+      "term": "stitch contract",
+      "suggest": "how our tools connect",
+      "kind": "internal"
+    },
+    {
+      "term": "going-cold list",
+      "suggest": "people we have not heard from",
+      "kind": "internal"
+    },
+    {
+      "term": "warm pool",
+      "suggest": "people we know",
+      "kind": "internal"
+    },
+    {
+      "term": "elite",
+      "suggest": "committed",
+      "kind": "prestige"
+    },
+    {
+      "term": "prestigious",
+      "suggest": "respected",
+      "kind": "prestige"
+    },
+    {
+      "term": "world-class",
+      "suggest": "well run",
+      "kind": "prestige"
+    },
+    {
+      "term": "exclusive",
+      "suggest": "open to you",
+      "kind": "prestige"
+    },
+    {
+      "term": "best and brightest",
+      "suggest": "people who want to grow",
+      "kind": "prestige"
+    },
+    {
+      "term": "high achievers",
+      "suggest": "people who want to grow",
+      "kind": "prestige"
+    },
+    {
+      "term": "top talent",
+      "suggest": "people who want to grow",
+      "kind": "prestige"
+    }
+  ]
+}

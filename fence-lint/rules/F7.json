@@ -1,0 +1,55 @@
+{
+  "id": "F7",
+  "title": "No automatic miss-count consequences",
+  "severity": "error",
+  "profiles": [
+    "outward",
+    "internal",
+    "agent-report"
+  ],
+  "source": "vault/24_Constraints/memory-constraint-riseup-accountability-consequences-are-p-01KZD2G1.md",
+  "rationale": "A universal one-miss/two-miss/three-miss rule is not adopted. Consequences must be communicated, proportionate, role-specific and paired with repair or re-entry.",
+  "fix": "Describe a conversation about capacity and fit, and a proportionate, role-specific step with a way back.",
+  "scope": "sentence",
+  "negationWindow": 3,
+  "unless": [
+    "\\b(?:not adopted|is rejected|was rejected|are rejected|we reject|no universal|no automatic)\\b"
+  ],
+  "patterns": [
+    {
+      "regex": "\\b(?:three|two|one|3|2|1)[- ]strikes?\\b",
+      "flags": "i",
+      "message": "Strike-count consequence."
+    },
+    {
+      "regex": "\\bstrike\\s+(?:one|two|three|1|2|3)\\b",
+      "flags": "i",
+      "message": "Strike-count consequence."
+    },
+    {
+      "regex": "\\b(?:one|two|three|four|1|2|3|4)\\s+(?:misses|missed\\s+[\\w-]+|no[- ]shows?|absences|strikes|late deliveries)\\s*(?:and|=|means|then|→|->|—|–|-)\\s*(?:you(?:'re|’re| are)\\s+|they(?:'re|’re| are)\\s+)?(?:out|off|removed|dropped|gone|exit(?:ed)?)\\b",
+      "flags": "i",
+      "message": "Automatic miss-count consequence."
+    },
+    {
+      "regex": "\\bmiss(?:es|ed)?\\s+(?:two|three|four|2|3|4)\\s+[\\w-]+\\s+(?:and|=|means|then)\\s+(?:you(?:'re|’re| are)\\s+|they(?:'re|’re| are)\\s+)?(?:out|off|removed|dropped|gone)\\b",
+      "flags": "i",
+      "message": "Automatic miss-count consequence."
+    },
+    {
+      "regex": "\\b(?:after|on|at|upon)\\s+(?:the\\s+|a\\s+)?(?:second|third|fourth|2nd|3rd|4th|two|three)\\s+(?:miss(?:es|ed)?|no[- ]shows?|absences?|strikes?|missed\\s+(?:deadlines?|tasks?|sessions?|meetings?|check-?ins?))\\b[^.\\n]{0,60}?\\b(?:automatic\\w*|auto-?\\w+|removed|removal|dropped|out|exit\\w*|los(?:e|es|t)|stripped|demot\\w*|kicked|banned)\\b",
+      "flags": "i",
+      "message": "Automatic miss-count consequence."
+    },
+    {
+      "regex": "\\bone[- ]miss\\s*\\/\\s*two[- ]miss\\b",
+      "flags": "i",
+      "message": "Universal miss-count rule."
+    },
+    {
+      "regex": "\\bzero[- ]tolerance\\b",
+      "flags": "i",
+      "message": "Zero-tolerance consequence."
+    }
+  ]
+}

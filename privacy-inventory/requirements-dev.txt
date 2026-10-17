@@ -1,0 +1,2 @@
+# Dev-only dependency. The privacy_inventory package itself is standard-library only.
+pytest==8.4.2

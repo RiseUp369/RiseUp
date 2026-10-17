@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "privacy-inventory/inventory.schema.json",
+  "title": "participant-data inventory",
+  "description": "Describes every store and field that holds participant data, so the checker can flag governance gaps. Only `name` and `classification` are required on a field: the other governance keys are optional in the schema on purpose, because a missing key is exactly the gap `check` reports.",
+  "type": "object",
+  "required": ["inventory_version", "system", "domestic_jurisdiction", "stores"],
+  "additionalProperties": false,
+  "properties": {
+    "inventory_version": { "type": "string", "enum": ["1"] },
+    "system": { "type": "string", "minLength": 1, "description": "Short system label, e.g. 'connection-event prototype (synthetic)'." },
+    "description": { "type": "string" },
+    "synthetic": { "type": "boolean", "description": "True for fixtures. Real inventories must never contain participant values, only field descriptions." },
+    "domestic_jurisdiction": { "type": "string", "minLength": 1, "description": "Where the organisation itself operates. A processor location equal to this needs no extra consent disclosure." },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "notice_ref": { "type": ["string", "null"], "description": "Path or id of the consent notice participants see." },
+        "disclosed_processor_locations": { "type": "array", "items": { "type": "string" }, "description": "Non-domestic processor locations that the consent notice names." }
+      }
+    },
+    "retention_rules": {
+      "type": "object",
+      "description": "Named retention rules that fields refer to by id.",
+      "additionalProperties": { "$ref": "#/$defs/retention_rule" }
+    },
+    "stores": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/store" } }
+  },
+  "$defs": {
+    "retention_rule": {
+      "type": "object",
+      "required": ["description"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string" },
+        "keep_days": { "type": ["integer", "null"] },
+        "keep_years": { "type": ["integer", "null"] },
+        "then": { "type": "string", "enum": ["delete", "reduce_to_summary", "aggregate_only"] }
+      }
+    },
+    "processor": {
+      "type": "object",
+      "required": ["kind", "location"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["self_hosted", "hosted_database", "hosted_sheet", "hosted_forms", "messaging", "file_storage", "other_service"] },
+        "location": { "type": "string", "minLength": 1 },
+        "outside_service": { "type": "boolean", "description": "True when a copy is held by a service outside the organisation's own control." }
+      }
+    },
+    "secret": {
+      "type": "object",
+      "required": ["kind", "storage"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["access_code", "password", "api_key", "session_key", "other_secret"] },
+        "storage": { "type": "string", "enum": ["raw", "hashed", "not_stored"] }
+      }
+    },
+    "store": {
+      "type": "object",
+      "required": ["id", "fields"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "description": { "type": "string" },
+        "processor": { "$ref": "#/$defs/processor" },
+        "steward_role": { "type": ["string", "null"], "description": "Default steward ROLE for the store's fields. A role label in lower case, never a person." },
+        "fields": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/field" } }
+      }
+    },
+    "field": {
+      "type": "object",
+      "required": ["name", "classification"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "description": { "type": "string" },
+        "classification": {
+          "type": "string",
+          "enum": ["direct_identifier", "contact", "quasi_identifier", "free_text", "sensitive_design", "pseudonymous", "aggregate"]
+        },
+        "purpose": { "type": ["string", "null"] },
+        "consent_basis": {
+          "type": ["string", "null"],
+          "enum": ["explicit_opt_in", "consent_notice", "legitimate_interest", "not_required_anonymous", "none", null]
+        },
+        "visibility": { "type": ["string", "null"], "enum": ["private", "team", "public", null] },
+        "retention": { "type": ["string", "null"], "description": "Id of an entry in retention_rules." },
+        "deletion_path": { "type": ["string", "null"], "description": "How a deletion request reaches this field (process, not a person)." },
+        "moderation": {
+          "type": ["string", "null"],
+          "enum": ["pre_publish_review", "post_hoc_review", "author_only", "none", null],
+          "description": "Required for free_text fields."
+        },
+        "steward_role": { "type": ["string", "null"], "description": "Steward ROLE label in lower case. Never a name, never an email." },
+        "processor_location": { "type": ["string", "null"], "description": "Overrides the store processor location for this field." },
+        "secret": { "$ref": "#/$defs/secret" },
+        "content_kind": {
+          "type": ["string", "null"],
+          "enum": ["raw_operations", "commitment", "private_context", "reviewed_learning", "aggregate_stat", "identity", "reference", null]
+        },
+        "export_eligible": { "type": "boolean", "description": "May this field leave via a world-model v2 learning export? Only reviewed, de-identified learning may." }
+      }
+    }
+  }
+}
