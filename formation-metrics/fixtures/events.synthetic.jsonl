@@ -1,0 +1,44 @@
+# Synthetic fixture: invented opaque ids, invented dates. No real people, no real notes.
+{"v":1,"type":"capacity.snapshot","at":"2026-10-01","activeWelcomers":2,"availableHours":30,"hoursPerEntrant":12,"source":"fixtures/synthetic"}
+{"v":1,"type":"slot.opened","at":"2026-10-02","slotId":"slot_q4a"}
+{"v":1,"type":"slot.opened","at":"2026-10-16","slotId":"slot_q4b"}
+{"v":1,"type":"slot.opened","at":"2026-11-06","slotId":"slot_q4c"}
+{"v":1,"type":"slot.opened","at":"2026-11-27","slotId":"slot_q4d"}
+{"v":1,"type":"ownership.unprompted","at":"2026-10-05","subject":"p_s01","slotId":"slot_q4a","stage":2}
+{"v":1,"type":"ownership.unprompted","at":"2026-10-20","subject":"p_s02","byCoDriver":true,"stage":4}
+{"v":1,"type":"ownership.unprompted","at":"2026-11-10","subject":"p_s03","slotId":"slot_q4c","stage":2}
+{"v":1,"type":"gap","at":"2026-10-24","summary":"room setup not covered"}
+{"v":1,"type":"gap","at":"2026-11-14","summary":"follow-up calls missed"}
+{"v":1,"type":"rescue","at":"2026-10-25","summary":"slides finished the night before"}
+{"v":1,"type":"stepped_in","at":"2026-11-01","actor":"p_s04","summary":"covered the welcome table"}
+{"v":1,"type":"card","at":"2026-11-02","summary":"confirm hall for the Saturday session"}
+{"v":1,"type":"intake.day0","at":"2026-10-03","subject":"p_e01"}
+{"v":1,"type":"intake.beat","at":"2026-10-04","subject":"p_e01","beat":"named_human_thanks"}
+{"v":1,"type":"intake.beat","at":"2026-10-05","subject":"p_e01","beat":"real_task"}
+{"v":1,"type":"intake.first_ship","at":"2026-10-09","subject":"p_e01"}
+{"v":1,"type":"intake.beat","at":"2026-10-12","subject":"p_e01","beat":"feedback"}
+{"v":1,"type":"intake.beat","at":"2026-10-16","subject":"p_e01","beat":"social_tie"}
+{"v":1,"type":"intake.day0","at":"2026-10-10","subject":"p_e02"}
+{"v":1,"type":"intake.beat","at":"2026-10-11","subject":"p_e02","beat":"named_human_thanks"}
+{"v":1,"type":"intake.first_ship","at":"2026-10-30","subject":"p_e02"}
+{"v":1,"type":"intake.day0","at":"2026-11-05","subject":"p_e03"}
+{"v":1,"type":"intake.beat","at":"2026-11-06","subject":"p_e03","beat":"named_human_thanks"}
+{"v":1,"type":"intake.beat","at":"2026-11-07","subject":"p_e03","beat":"real_task"}
+{"v":1,"type":"intake.first_ship","at":"2026-11-12","subject":"p_e03"}
+{"v":1,"type":"intake.day0","at":"2026-12-10","subject":"p_e04"}
+{"v":1,"type":"intake.beat","at":"2026-12-11","subject":"p_e04","beat":"named_human_thanks"}
+{"v":1,"type":"decision.logged","at":"2026-10-06"}
+{"v":1,"type":"decision.logged","at":"2026-10-13"}
+{"v":1,"type":"decision.logged","at":"2026-10-20"}
+{"v":1,"type":"decision.logged","at":"2026-10-27"}
+{"v":1,"type":"decision.logged","at":"2026-11-03"}
+{"v":1,"type":"decision.logged","at":"2026-11-10"}
+{"v":1,"type":"decision.logged","at":"2026-11-17"}
+{"v":1,"type":"decision.logged","at":"2026-11-24"}
+{"v":1,"type":"deliverable.shipped","at":"2026-11-21","summary":"sprint deliverable v1"}
+{"v":1,"type":"pod.session","at":"2026-10-07","podId":"pod_a","expected":3,"attended":3,"founderRescue":false,"facilitatorHours":2}
+{"v":1,"type":"pod.session","at":"2026-10-21","podId":"pod_a","expected":3,"attended":2,"founderRescue":true,"facilitatorHours":3}
+{"v":1,"type":"pod.session","at":"2026-10-08","podId":"pod_b","expected":3,"attended":3,"founderRescue":false,"facilitatorHours":1.5}
+{"v":1,"type":"pod.session","at":"2026-11-04","podId":"pod_b","expected":3,"attended":2,"founderRescue":false}
+{"v":1,"type":"participant.impact","at":"2026-10-15","summary":"session follow-up survey returned"}
+{"v":1,"type":"leader.created","at":"2026-12-01"}
