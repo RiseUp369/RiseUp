@@ -1,0 +1,74 @@
+{
+  "inventory_version": "1",
+  "system": "anonymous live poll (synthetic)",
+  "description": "Synthetic inventory for an event-day live poll that stores only anonymous counts plus a short-lived device nonce to stop double voting.",
+  "synthetic": true,
+  "domestic_jurisdiction": "home",
+  "consent": {
+    "notice_ref": "on-screen notice: answers are anonymous and counted only; hosting provider is in the US",
+    "disclosed_processor_locations": ["US"]
+  },
+  "retention_rules": {
+    "event-plus-90d": {
+      "description": "Counts kept 90 days after the event for the session debrief, then deleted.",
+      "keep_days": 90,
+      "then": "delete"
+    },
+    "event-day-only": {
+      "description": "Deleted at the end of the event day.",
+      "keep_days": 1,
+      "then": "delete"
+    }
+  },
+  "stores": [
+    {
+      "id": "poll_counts",
+      "description": "Running tally per question and option.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "session lead",
+      "fields": [
+        {
+          "name": "question_id",
+          "classification": "aggregate",
+          "purpose": "identify which poll question a tally belongs to",
+          "consent_basis": "not_required_anonymous",
+          "visibility": "public",
+          "retention": "event-plus-90d",
+          "deletion_path": "tally table dropped by the post-event cleanup step",
+          "content_kind": "aggregate_stat",
+          "export_eligible": true
+        },
+        {
+          "name": "option_counts",
+          "classification": "aggregate",
+          "purpose": "show the room the live result and feed the session debrief",
+          "consent_basis": "not_required_anonymous",
+          "visibility": "public",
+          "retention": "event-plus-90d",
+          "deletion_path": "tally table dropped by the post-event cleanup step",
+          "content_kind": "aggregate_stat",
+          "export_eligible": true
+        }
+      ]
+    },
+    {
+      "id": "vote_guard",
+      "description": "Short-lived guard against one device voting twice.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "session lead",
+      "fields": [
+        {
+          "name": "device_nonce_hash",
+          "classification": "pseudonymous",
+          "purpose": "stop the same device voting twice on one question",
+          "consent_basis": "not_required_anonymous",
+          "visibility": "private",
+          "retention": "event-day-only",
+          "deletion_path": "guard table truncated by the end-of-day cleanup step",
+          "content_kind": "reference",
+          "export_eligible": false
+        }
+      ]
+    }
+  ]
+}

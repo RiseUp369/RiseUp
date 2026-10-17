@@ -1,0 +1,153 @@
+{
+  "inventory_version": "1",
+  "system": "connection-event prototype (synthetic, atmiyata-style spine)",
+  "description": "Synthetic inventory shaped like a connection-event prototype: a participant token, a centre, a phone lookup for returning participants, a connection log and an optional reflection. It holds field descriptions only, never participant values. It reflects the open risk that no consent, retention, access or correction record exists yet.",
+  "synthetic": true,
+  "domestic_jurisdiction": "home",
+  "consent": {
+    "notice_ref": null,
+    "disclosed_processor_locations": []
+  },
+  "retention_rules": {
+    "rd49-3y-then-summary": {
+      "description": "RD-49 option B: keep 3 years from last activity, then reduce to summary; a deletion request overrides.",
+      "keep_years": 3,
+      "then": "reduce_to_summary"
+    },
+    "event-day-only": {
+      "description": "Deleted at the end of the event day.",
+      "keep_days": 1,
+      "then": "delete"
+    }
+  },
+  "stores": [
+    {
+      "id": "participant_tokens",
+      "description": "One row per participant token issued at the event.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "unassigned",
+      "fields": [
+        {
+          "name": "participant_token",
+          "classification": "pseudonymous",
+          "purpose": "link a participant's connections within one event without storing a name",
+          "consent_basis": "consent_notice",
+          "visibility": "private",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "deletion request removes the token row and cascades to the connection log",
+          "content_kind": "identity",
+          "export_eligible": false
+        },
+        {
+          "name": "entry_code_hash",
+          "classification": "pseudonymous",
+          "purpose": "let a participant re-open their own card on a second device",
+          "consent_basis": "consent_notice",
+          "visibility": "private",
+          "retention": "event-day-only",
+          "deletion_path": "dropped with the event-day cleanup job",
+          "secret": { "kind": "access_code", "storage": "hashed" },
+          "content_kind": "reference",
+          "export_eligible": false
+        }
+      ]
+    },
+    {
+      "id": "centres",
+      "description": "Which local centre a participant came from.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "unassigned",
+      "fields": [
+        {
+          "name": "home_centre",
+          "classification": "quasi_identifier",
+          "purpose": "group connections by centre for follow-up",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "deletion request clears the centre value on the token row",
+          "content_kind": "raw_operations",
+          "export_eligible": false
+        }
+      ]
+    },
+    {
+      "id": "phone_lookup",
+      "description": "Lets a returning participant find their earlier token by phone number.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "unassigned",
+      "fields": [
+        {
+          "name": "phone_number",
+          "classification": "contact",
+          "purpose": "find a returning participant's earlier token",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "deletion request removes the lookup row",
+          "content_kind": "identity",
+          "export_eligible": false
+        }
+      ]
+    },
+    {
+      "id": "connection_log",
+      "description": "One row per confirmed connection between two tokens.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "unassigned",
+      "fields": [
+        {
+          "name": "from_token",
+          "classification": "pseudonymous",
+          "purpose": "record who connected with whom, by token",
+          "consent_basis": "consent_notice",
+          "visibility": "private",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "cascades from the token row",
+          "content_kind": "raw_operations",
+          "export_eligible": false
+        },
+        {
+          "name": "to_token",
+          "classification": "pseudonymous",
+          "purpose": "record who connected with whom, by token",
+          "consent_basis": "consent_notice",
+          "visibility": "private",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "cascades from the token row",
+          "content_kind": "raw_operations",
+          "export_eligible": false
+        },
+        {
+          "name": "matching_pool",
+          "classification": "sensitive_design",
+          "description": "Participants are matched only within separate pools keyed by a participant-group attribute (a segregated participant flow).",
+          "purpose": "keep matches inside the pool the event design specifies",
+          "consent_basis": "consent_notice",
+          "visibility": "private",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "cascades from the token row",
+          "content_kind": "raw_operations",
+          "export_eligible": false
+        }
+      ]
+    },
+    {
+      "id": "reflections",
+      "description": "Optional free-text reflection a participant may add after a connection.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "unassigned",
+      "fields": [
+        {
+          "name": "reflection_text",
+          "classification": "free_text",
+          "purpose": "let a participant note what a connection meant to them",
+          "consent_basis": "explicit_opt_in",
+          "visibility": "private",
+          "deletion_path": "deletion request removes the reflection row",
+          "content_kind": "private_context",
+          "export_eligible": false
+        }
+      ]
+    }
+  ]
+}
