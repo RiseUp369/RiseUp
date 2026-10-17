@@ -1,0 +1,21 @@
+{
+  "name": "probe3-readiness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Probe 3 absence readiness gate and step-back drill kit (doctrine v0.1, unratified). Zero runtime dependencies.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "check": "node --experimental-strip-types --no-warnings src/cli.ts check",
+    "drill": "node --experimental-strip-types --no-warnings src/cli.ts drill",
+    "handoff": "node --experimental-strip-types --no-warnings src/cli.ts handoff",
+    "import-stewards": "node --experimental-strip-types --no-warnings src/cli.ts import-stewards"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vitest": "3.2.4"
+  }
+}

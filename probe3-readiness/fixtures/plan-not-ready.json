@@ -1,0 +1,46 @@
+{
+  "$schema": "../absence-plan.schema.json",
+  "planVersion": "0.1",
+  "doctrineStatus": "v0.1-unratified",
+  "planId": "synthetic-not-ready",
+  "absence": {
+    "probe": "Probe 3",
+    "departureDate": "2026-11-02",
+    "returnDate": null,
+    "founderRole": "Founder",
+    "primaryHolder": "",
+    "primaryBackup": ""
+  },
+  "roles": [
+    { "label": "Founder", "kind": "founder" },
+    { "label": "Holder A", "kind": "co-driver" },
+    { "label": "Holder B", "kind": "holder" }
+  ],
+  "thresholds": { "maxScopePerHolder": 2 },
+  "responseWindow": { "cadence": "unset", "day": "unset" },
+  "emergencyInterrupts": [
+    { "class": "harm_to_person", "firstResponder": "Holder A" }
+  ],
+  "scope": [
+    { "id": "rule-1", "title": "Synthetic rule 1", "holder": "", "backup": "", "runsWithoutFounder": null },
+    { "id": "rule-2", "title": "Synthetic rule 2", "holder": "Founder", "backup": "Holder B", "runsWithoutFounder": false },
+    { "id": "rule-3", "title": "Synthetic rule 3", "holder": "Holder A", "backup": "Holder A", "runsWithoutFounder": true },
+    { "id": "rule-4", "title": "Synthetic rule 4", "holder": "Holder A", "backup": "Founder", "runsWithoutFounder": true },
+    { "id": "rule-5", "title": "Synthetic rule 5", "holder": "Holder A", "backup": "Holder B", "runsWithoutFounder": true }
+  ],
+  "heartbeat": {
+    "peerSession": { "cadence": "unset", "rotatingHost": false, "holder": "" },
+    "asyncPulse": { "cadence": "monthly", "holder": "Founder" },
+    "warmthLoop": { "messagesPlanned": 0, "holder": "" }
+  },
+  "runwayGate": {
+    "coastPageWritten": false,
+    "handoffRitualDone": false,
+    "zeroOpsWeek": null
+  },
+  "formation": { "ownersBesidesFounder": 0, "coDriverVacuumLevel3Passed": false },
+  "reunion": { "date": null, "announced": false },
+  "rehearsals": [
+    { "date": "2026-10-10", "kind": "tabletop", "holderActedWithoutFounder": false }
+  ]
+}

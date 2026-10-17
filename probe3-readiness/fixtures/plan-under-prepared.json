@@ -1,0 +1,44 @@
+{
+  "$schema": "../absence-plan.schema.json",
+  "planVersion": "0.1",
+  "doctrineStatus": "v0.1-unratified",
+  "planId": "synthetic-under-prepared",
+  "absence": {
+    "probe": "Probe 3",
+    "departureDate": "2026-11-02",
+    "returnDate": "2027-02-26",
+    "founderRole": "Founder",
+    "primaryHolder": "Holder A",
+    "primaryBackup": "Holder B"
+  },
+  "roles": [
+    { "label": "Founder", "kind": "founder" },
+    { "label": "Holder A", "kind": "co-driver" },
+    { "label": "Holder B", "kind": "holder" }
+  ],
+  "responseWindow": { "cadence": "weekly", "day": "sunday" },
+  "emergencyInterrupts": [
+    { "class": "harm_to_person", "firstResponder": "Holder A" },
+    { "class": "reputational_damage", "firstResponder": "Holder A" },
+    { "class": "money_legal", "firstResponder": "Holder B" }
+  ],
+  "scope": [
+    { "id": "peer-session", "title": "Run the peer session", "holder": "Holder A", "backup": "Holder B", "runsWithoutFounder": true },
+    { "id": "async-pulse", "title": "Send the async pulse", "holder": "Holder B", "backup": "Holder A", "runsWithoutFounder": true }
+  ],
+  "heartbeat": {
+    "peerSession": { "cadence": "biweekly", "rotatingHost": true, "holder": "Holder A" },
+    "asyncPulse": { "cadence": "monthly", "holder": "Holder B" },
+    "warmthLoop": { "messagesPlanned": 3, "holder": "Holder A" }
+  },
+  "runwayGate": {
+    "coastPageWritten": true,
+    "handoffRitualDone": true,
+    "zeroOpsWeek": { "start": "2026-10-05", "end": "2026-10-11", "founderInterventions": 0 }
+  },
+  "formation": { "ownersBesidesFounder": 0, "coDriverVacuumLevel3Passed": false },
+  "reunion": { "date": "2027-03-06", "announced": true },
+  "rehearsals": [
+    { "date": "2026-09-21", "kind": "live-step-back", "durationDays": 7, "holderActedWithoutFounder": true }
+  ]
+}
