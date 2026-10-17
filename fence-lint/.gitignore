@@ -1,0 +1,4 @@
+node_modules/
+coverage/
+# Real rosters and local term lists never enter git.
+*.local.*

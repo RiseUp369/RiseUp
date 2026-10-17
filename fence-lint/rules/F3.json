@@ -1,0 +1,33 @@
+{
+  "id": "F3",
+  "title": "No inferring character or potential from presentation signals",
+  "severity": "error",
+  "profiles": [
+    "outward",
+    "internal",
+    "agent-report"
+  ],
+  "source": "vault/24_Constraints/memory-constraint-riseup-ai-may-support-learning-but-may-n-01KZD2H4.md",
+  "rationale": "AI may support practice, feedback and reflection; it must not infer empathy, personality, charisma, employability or leadership potential from voice, accent, facial expression or discussion activity.",
+  "fix": "Describe observable work or the person's own stated reflection; drop the inference from how they sound, look or how much they talked.",
+  "scope": "sentence",
+  "unless": [
+    "\\b(?:must not|may not|should not|never|do not|does not|don't|doesn't|cannot|can't|is not|are not|isn't|aren't|nothing|no)\\b\\s+(?:[\\w'-]+\\s+){0,3}?(?:infer|inferred|inferring|judge[ds]?|judging|read(?:s|ing)?|guess(?:es|ed)?|assess(?:ed|es)?|score[sd]?)\\b"
+  ],
+  "cooccurrence": {
+    "message": "Infers a character trait or potential from a presentation signal (voice, accent, face, talk-time).",
+    "anchor": "\\b(?:empath(?:y|etic|ic)|personality|charism(?:a|atic)|employab(?:le|ility)|leadership\\s+(?:potential|material|qualities)|natural[- ]born\\s+leader|natural\\s+leader|potential\\s+leader|leader\\s+material)\\b",
+    "with": [
+      "\\b(?:voice|vocal|tone of voice|accent(?:ed)?|face|facial|expressions?|smile|eye contact|talk[- ]?time|speaking time|air ?time|how much (?:he|she|they) (?:talk|talked|spoke|speaks)|discussion activity|talked the most|spoke the most|quiet(?:er|est)?|loud(?:er|est)?)\\b",
+      "\\b(?:infer\\w*|suggest\\w*|show(?:s|ed|ing)?|indicat\\w*|reveal\\w*|signal\\w*|means?|meant|prove[sd]?|demonstrat\\w*|reflect\\w*|tells? us|told us|sound(?:s|ed)?|seem(?:s|ed)?|comes? across|came across|read as|judging (?:by|from)|based on|because|so (?:he|she|they)|clearly|obviously|predict\\w*|evidence of|sign of)\\b"
+    ],
+    "flags": "i"
+  },
+  "patterns": [
+    {
+      "regex": "\\b(?:charismatic|empathetic|empathic|employable|leader-like)\\s+(?:[\\w'-]+\\s+){0,2}?(?:voice|accent|face|smile|expression)\\b",
+      "flags": "i",
+      "message": "Attaches a character trait to a presentation signal."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "F5",
+  "title": "Only the ladder names a stage",
+  "severity": "error",
+  "profiles": [
+    "outward",
+    "internal",
+    "agent-report"
+  ],
+  "source": "vault/30_Decisions/decision-conflict-resolution-proposal-the-rival-volunteer-progression.md",
+  "rationale": "The Driver Engine 0-5 ladder is the only ladder allowed to name a stage; rival ladder vocabularies are parked and must not be used as stages or promotion gates.",
+  "fix": "Use the configured ladder label for that stage number (see config/ladder.json), or describe the behaviour instead of naming a stage.",
+  "scope": "sentence",
+  "patterns": [
+    {
+      "regex": "\\b[Ss]tage[\\s-]*(?<num>\\d)\\b\\s*[-–—:(/]?\\s*\\(?(?<label>[A-Z][A-Za-z]+)\\b",
+      "message": "Stage label is not on the configured ladder.",
+      "labelAllow": "ladder"
+    },
+    {
+      "regex": "\\b[Ss]tage\\s*[:=]\\s*(?<label>[A-Za-z][A-Za-z-]+)\\b",
+      "message": "Stage label is not on the configured ladder.",
+      "labelAllow": "ladder"
+    },
+    {
+      "regex": "\\b(?:{RIVAL})\\s+(?:stage|level|tier)\\b",
+      "flags": "i",
+      "message": "Uses a rival-ladder label as a stage name."
+    },
+    {
+      "regex": "\\b(?:stage|level|tier)\\s+(?:of\\s+)?(?:{RIVAL})\\b",
+      "flags": "i",
+      "message": "Uses a rival-ladder label as a stage name."
+    },
+    {
+      "regex": "\\b(?:promot\\w*|mov(?:e|ed|es)|graduat\\w*|advanc\\w*|upgrad\\w*|demot\\w*|drop(?:s|ped)?)\\s+(?:[\\w'-]+\\s+){0,3}?(?:to|into)\\s+(?:the\\s+|an?\\s+)?(?:{RIVAL})\\b",
+      "flags": "i",
+      "message": "Uses a rival-ladder label as a promotion step."
+    }
+  ]
+}
