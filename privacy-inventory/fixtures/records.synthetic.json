@@ -1,0 +1,54 @@
+{
+  "synthetic": true,
+  "description": "Synthetic participant records for the retention command. Every value is invented; ids are opaque.",
+  "records": [
+    {
+      "id": "rec-001",
+      "last_activity": "2025-03-01",
+      "profile": { "token": "tok-aaa", "centre": "centre-1" },
+      "skills": [
+        { "skill": "facilitation", "confirmed": true, "review_date": "2025-02-01" }
+      ],
+      "participation": [
+        { "event": "evt-10", "date": "2025-03-01" }
+      ],
+      "reflections": ["synthetic reflection text"]
+    },
+    {
+      "id": "rec-002",
+      "last_activity": "2023-10-17",
+      "profile": { "token": "tok-bbb", "centre": "centre-2" },
+      "skills": [
+        { "skill": "setup crew", "confirmed": true, "review_date": "2023-09-01" },
+        { "skill": "welcoming", "confirmed": false }
+      ],
+      "participation": [
+        { "event": "evt-01", "date": "2022-05-01" },
+        { "event": "evt-02", "date": "2023-10-17" }
+      ],
+      "reflections": ["synthetic reflection text"],
+      "phone_lookup": "000-000-0000"
+    },
+    {
+      "id": "rec-003",
+      "last_activity": "2023-10-18",
+      "profile": { "token": "tok-ccc", "centre": "centre-1" },
+      "skills": [],
+      "participation": [ { "event": "evt-02", "date": "2023-10-18" } ]
+    },
+    {
+      "id": "rec-004",
+      "last_activity": "2026-09-01",
+      "deletion_requested_on": "2026-10-01",
+      "profile": { "token": "tok-ddd", "centre": "centre-3" },
+      "participation": [ { "event": "evt-20", "date": "2026-09-01" } ]
+    },
+    {
+      "id": "rec-005",
+      "last_activity": "2026-09-01",
+      "deletion_requested_on": "2026-12-01",
+      "profile": { "token": "tok-eee", "centre": "centre-3" },
+      "participation": [ { "event": "evt-20", "date": "2026-09-01" } ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "inventory_version": "1",
+  "system": "volunteer tracker (synthetic, generic spine)",
+  "description": "Synthetic inventory for a generic volunteer tracker: people, contact, skills, notes, work events, commitments and reviewed learning notes.",
+  "synthetic": true,
+  "domestic_jurisdiction": "home",
+  "consent": {
+    "notice_ref": "volunteer sign-up notice v1 (synthetic)",
+    "disclosed_processor_locations": ["US"]
+  },
+  "retention_rules": {
+    "rd49-3y-then-summary": {
+      "description": "RD-49 option B: keep 3 years from last activity, then reduce to summary; a deletion request overrides.",
+      "keep_years": 3,
+      "then": "reduce_to_summary"
+    }
+  },
+  "stores": [
+    {
+      "id": "people",
+      "description": "One row per volunteer.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "volunteer coordinator",
+      "fields": [
+        {
+          "name": "display_name",
+          "classification": "direct_identifier",
+          "purpose": "let the team recognise who is who",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "deletion request removes the person row and cascades",
+          "content_kind": "identity",
+          "export_eligible": false
+        },
+        {
+          "name": "phone",
+          "classification": "contact",
+          "purpose": "reach a volunteer about a shift",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "deletion request removes the person row and cascades",
+          "content_kind": "identity",
+          "export_eligible": false
+        },
+        {
+          "name": "confirmed_skills",
+          "classification": "quasi_identifier",
+          "purpose": "match volunteers to roles; each skill carries a review date",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "deletion request removes the person row and cascades",
+          "content_kind": "raw_operations",
+          "export_eligible": false
+        },
+        {
+          "name": "lead_notes",
+          "classification": "free_text",
+          "purpose": "short notes a lead keeps to support the volunteer",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "moderation": "post_hoc_review",
+          "deletion_path": "deletion request removes the person row and cascades",
+          "content_kind": "private_context",
+          "export_eligible": false
+        }
+      ]
+    },
+    {
+      "id": "work_log",
+      "description": "Work events and commitments.",
+      "processor": { "kind": "hosted_database", "location": "US", "outside_service": true },
+      "steward_role": "volunteer coordinator",
+      "fields": [
+        {
+          "name": "work_event",
+          "classification": "pseudonymous",
+          "purpose": "record that a volunteer did a piece of work",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "cascades from the person row",
+          "content_kind": "raw_operations",
+          "export_eligible": false
+        },
+        {
+          "name": "commitment",
+          "classification": "pseudonymous",
+          "purpose": "track what a volunteer said they would do",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "cascades from the person row",
+          "content_kind": "commitment",
+          "export_eligible": true
+        },
+        {
+          "name": "reviewed_learning_note",
+          "classification": "aggregate",
+          "purpose": "de-identified lesson approved at a review, for the learning export",
+          "consent_basis": "consent_notice",
+          "visibility": "team",
+          "retention": "rd49-3y-then-summary",
+          "deletion_path": "removed on request by the export reviewer role",
+          "content_kind": "reviewed_learning",
+          "export_eligible": true
+        }
+      ]
+    }
+  ]
+}
