@@ -1,0 +1,46 @@
+{
+  "id": "F4",
+  "title": "No warm-contact or headcount numbers in documents",
+  "severity": "error",
+  "profiles": [
+    "outward",
+    "internal",
+    "agent-report"
+  ],
+  "source": "vault/30_Decisions/decision-conflict-resolution-proposal-warm-contact-count-6-driver-eng.md",
+  "rationale": "The tracker is the single place a warm-contact count lives; any document that states one is stale by construction and should say \"see the tracker\".",
+  "fix": "Replace the number with \"see the tracker\".",
+  "scope": "sentence",
+  "patterns": [
+    {
+      "regex": "\\b\\d+\\s+warm(?:[- ](?:contacts?|leads?|prospects?|people|names|pool))?\\b",
+      "flags": "i",
+      "message": "States a warm-contact count; say \"see the tracker\"."
+    },
+    {
+      "regex": "\\bwarm[- ](?:contacts?|leads?|pool|list|universe)\\b(?:\\s+(?:count|size|number|total))?\\s*(?:[:=~≈]|is|of|at|stands at|sits at|was|are|has|holds|includes|totals?)?\\s*(?:about\\s+|around\\s+|roughly\\s+|nearly\\s+|over\\s+|~\\s*)?\\d+",
+      "flags": "i",
+      "message": "States a warm-contact count; say \"see the tracker\"."
+    },
+    {
+      "regex": "\\bwarm-\\d+\\b",
+      "flags": "i",
+      "message": "Names a numbered warm list; say \"see the tracker\"."
+    },
+    {
+      "regex": "\\b(?:head\\s?count|volunteer count|member count|roster (?:size|count))\\b[^.\\n\\d]{0,20}\\d+",
+      "flags": "i",
+      "message": "States a headcount; say \"see the tracker\"."
+    },
+    {
+      "regex": "\\b\\d+\\s+(?:active|current|dormant|registered|signed[- ]up|engaged|committed)\\s+(?:volunteers|members|contacts|people|welcomers)\\b",
+      "flags": "i",
+      "message": "States a headcount; say \"see the tracker\"."
+    },
+    {
+      "regex": "\\bwe\\s+(?:now\\s+)?have\\s+(?:about\\s+|around\\s+|roughly\\s+|over\\s+|nearly\\s+|almost\\s+)?\\d+\\s+(?:volunteers|members)\\b",
+      "flags": "i",
+      "message": "States a headcount; say \"see the tracker\"."
+    }
+  ]
+}

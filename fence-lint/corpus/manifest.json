@@ -1,0 +1,24 @@
+{
+  "_comment": "SYNTHETIC labelled corpus. Every bad/ sample lists its complete expected findings (rule + line); good/ samples expect none. npm run eval fails on any missed, extra or good/ finding.",
+  "roster": "../fixtures/roster.synthetic.txt",
+  "samples": [
+    { "file": "bad/f1-rescue-briefing.md", "profile": "agent-report", "expect": [{ "rule": "F1", "line": 6 }, { "rule": "F1", "line": 7 }] },
+    { "file": "bad/f2-ranking-handoff.md", "profile": "internal", "expect": [{ "rule": "F2", "line": 5 }, { "rule": "F2", "line": 6 }, { "rule": "F2", "line": 7 }] },
+    { "file": "bad/f3-observation-card.md", "profile": "agent-report", "expect": [{ "rule": "F3", "line": 5 }, { "rule": "F3", "line": 6 }, { "rule": "F3", "line": 7 }] },
+    { "file": "bad/f4-plan-doc.md", "profile": "internal", "expect": [{ "rule": "F4", "line": 4 }, { "rule": "F4", "line": 6 }, { "rule": "F4", "line": 8 }, { "rule": "F4", "line": 10 }] },
+    { "file": "bad/f5-stage-notes.md", "profile": "internal", "expect": [{ "rule": "F5", "line": 4 }, { "rule": "F5", "line": 6 }, { "rule": "F5", "line": 8 }, { "rule": "F5", "line": 10 }] },
+    { "file": "bad/f6-landing-copy.md", "profile": "outward", "expect": [{ "rule": "F6", "line": 4 }, { "rule": "F6", "line": 6 }] },
+    { "file": "bad/f7-commitment-card.md", "profile": "internal", "expect": [{ "rule": "F7", "line": 6 }, { "rule": "F7", "line": 8 }, { "rule": "F7", "line": 10 }] },
+    { "file": "bad/f8-outer-funnel.md", "profile": "outward", "expect": [{ "rule": "F8", "line": 4 }, { "rule": "F8", "line": 6 }, { "rule": "F8", "line": 8 }] },
+    { "file": "bad/fl0-disable-without-reason.md", "profile": "internal", "expect": [{ "rule": "F2", "line": 4 }, { "rule": "FL0", "line": 4 }] },
+    { "file": "bad/mixed-agent-report.md", "profile": "agent-report", "expect": [{ "rule": "F1", "line": 4 }, { "rule": "F2", "line": 5 }, { "rule": "F3", "line": 6 }, { "rule": "F7", "line": 7 }] },
+    { "file": "good/outward-workshop-invite.md", "profile": "outward" },
+    { "file": "good/agent-briefing-clean.md", "profile": "agent-report" },
+    { "file": "good/doctrine-summary.md", "profile": "internal" },
+    { "file": "good/facilitation-notes.md", "profile": "agent-report" },
+    { "file": "good/course-page.md", "profile": "outward" },
+    { "file": "good/pod-pilot-update.md", "profile": "internal" },
+    { "file": "good/internal-funnel-design.md", "profile": "internal" },
+    { "file": "good/quoted-with-disable.md", "profile": "internal" }
+  ]
+}

@@ -1,0 +1,7 @@
+# SYNTHETIC roster: invented placeholder names for tests and the eval corpus. Not real people.
+# Format: one person per line; aliases separated by "|". Real rosters go in *.local.* files (gitignored).
+Testa Synthetica|Testa
+Bram Placeholder|Bram
+Fixie Quillon|Fixie
+Dax Mockwell|Dax
+Zuri Samplewood|Zuri

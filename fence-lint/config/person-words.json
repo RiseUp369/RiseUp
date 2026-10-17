@@ -1,0 +1,26 @@
+{
+  "_comment": "Role words that count as a person reference for F2 ({PERSON}). Roster names are added at runtime.",
+  "words": [
+    "volunteer",
+    "volunteers",
+    "member",
+    "members",
+    "welcomer",
+    "welcomers",
+    "mentee",
+    "mentees",
+    "participant",
+    "participants",
+    "person",
+    "people",
+    "attendee",
+    "attendees",
+    "recruit",
+    "recruits",
+    "contributor",
+    "contributors",
+    "co-driver",
+    "pod lead",
+    "pod leads"
+  ]
+}

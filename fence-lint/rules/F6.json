@@ -1,0 +1,23 @@
+{
+  "id": "F6",
+  "title": "No internal or prestige jargon in outward copy",
+  "severity": "error",
+  "profiles": [
+    "outward"
+  ],
+  "source": "vault/30_Decisions/decision-keep-the-depth-drop-the-philosophy-jargon-outward-facing-cop.md",
+  "alsoSee": [
+    "vault/50_Failures/memory-failure_lesson-internal-jargon-that-was-removed-came-ba-01M1QHYR.md"
+  ],
+  "rationale": "Outward copy keeps the depth but drops the jargon: a prospective volunteer with no background must both understand the line and want it. Removed jargon comes back unless a check pins it.",
+  "fix": "Use the plain replacement listed in config/outward-terms.json, or plain words a newcomer would understand.",
+  "scope": "sentence",
+  "patterns": [
+    {
+      "regex": "\\b(?:{TERMS})\\b",
+      "flags": "i",
+      "message": "Internal or prestige term in outward copy.",
+      "suggestFrom": "terms"
+    }
+  ]
+}

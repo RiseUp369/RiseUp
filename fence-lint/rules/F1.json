@@ -1,0 +1,28 @@
+{
+  "id": "F1",
+  "title": "No names in RESCUE: or GAP: signals",
+  "severity": "error",
+  "profiles": [
+    "outward",
+    "internal",
+    "agent-report"
+  ],
+  "source": "vault/30_Decisions/decision-riseup-os-deploys-through-the-existing-cockpit-cli-and-monda.md",
+  "rationale": "Rescues and gaps print without names (no-shame constraint); stepping in keeps the name as recognition. A RESCUE: or GAP: line that names a person turns a work-state signal into a public mark against someone.",
+  "fix": "Describe the task, the date and the gap; leave the person out. Use STEPPED-IN: if you want to credit the person who helped.",
+  "scope": "line",
+  "linePrefix": "^\\s*(?:[-*+>]\\s*)?(?:\\*\\*)?(?:RESCUE|GAP)(?:\\*\\*)?\\s*:",
+  "patterns": [
+    {
+      "regex": "\\b(?:{ROSTER})\\b",
+      "flags": "i",
+      "message": "A roster name appears in a RESCUE:/GAP: signal; these signals print without names.",
+      "redact": true
+    },
+    {
+      "regex": "(?<![\\w.])@[A-Za-z][\\w.-]+",
+      "message": "A person handle appears in a RESCUE:/GAP: signal; these signals print without names.",
+      "redact": true
+    }
+  ]
+}

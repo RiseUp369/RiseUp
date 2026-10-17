@@ -1,0 +1,68 @@
+{
+  "id": "F2",
+  "title": "No ranking or scoring of people",
+  "severity": "error",
+  "profiles": [
+    "outward",
+    "internal",
+    "agent-report"
+  ],
+  "source": "vault/24_Constraints/memory-constraint-riseup-operational-visibility-must-revea-01KZD2FM.md",
+  "rationale": "Visibility should clarify commitments, evidence, risks and dependencies; it must not rank people, monitor busyness or create reputation anxiety.",
+  "fix": "Report work state (what was committed, what shipped, what is blocked), not where a person sits relative to others.",
+  "scope": "sentence",
+  "negationWindow": 3,
+  "patterns": [
+    {
+      "regex": "\\brank(?:ed|ing|s)?\\s*(?:no\\.?\\s*|number\\s*)?#\\s*\\d+",
+      "flags": "i",
+      "message": "Ranks a person or item by position (\"rank #\")."
+    },
+    {
+      "regex": "#\\s*\\d+\\s+(?:{PERSON})\\b",
+      "flags": "i",
+      "message": "Numbers people by position."
+    },
+    {
+      "regex": "\\btop[- ](?:performers?|volunteers?|contributors?|members?|welcomers?|\\d+\\s+(?:{PERSON}))\\b",
+      "flags": "i",
+      "message": "Names a \"top\" tier of people."
+    },
+    {
+      "regex": "\\b(?:bottom|worst|best|low|high|under|star)[- ]?performers?\\b",
+      "flags": "i",
+      "message": "Sorts people into performer tiers."
+    },
+    {
+      "regex": "\\bleader[- ]?boards?\\b",
+      "flags": "i",
+      "message": "Leaderboards rank people."
+    },
+    {
+      "regex": "\\b(?:most|least)\\s+(?:active|reliable|engaged|committed|productive|responsive)\\s+(?:{PERSON})\\b",
+      "flags": "i",
+      "message": "Ranks people by busyness or reliability."
+    },
+    {
+      "regex": "\\brank(?:s|ed|ing)?\\s+(?:of\\s+)?(?:the\\s+|all\\s+|our\\s+)?(?:{PERSON})\\b",
+      "flags": "i",
+      "message": "Ranks people."
+    },
+    {
+      "regex": "\\b(?:{PERSON})\\b[^.\\n]{0,40}?\\b(?:score[sd]?|rating|rated|graded)\\b\\s*(?:of|at|:|=|is|was)?\\s*\\d",
+      "flags": "i",
+      "message": "Puts a numeric score next to a person reference."
+    },
+    {
+      "regex": "\\b(?:score[sd]?|rated|rating|graded)\\b[^.\\n]{0,15}?\\d+(?:\\.\\d+)?\\s*(?:\\/\\s*\\d+|%|points?|pts)?\\s+(?:for|to)\\s+(?:each\\s+|every\\s+|the\\s+)?(?:{PERSON})\\b",
+      "flags": "i",
+      "message": "Puts a numeric score next to a person reference."
+    },
+    {
+      "regex": "\\b(?:{ROSTER})\\b\\s*[:(\\-–—]\\s*\\d+(?:\\.\\d+)?\\s*(?:\\/\\s*\\d+|%|pts|points)",
+      "flags": "i",
+      "message": "Puts a numeric score next to a roster name.",
+      "redact": true
+    }
+  ]
+}
